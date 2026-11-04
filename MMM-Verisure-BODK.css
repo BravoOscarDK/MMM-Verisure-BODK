@@ -1,0 +1,4 @@
+.verisure-bodk { min-width: 280px; max-width: 440px; }
+.verisure-bodk .verisure-row { display: flex; justify-content: space-between; gap: 20px; padding: 4px 0; }
+.verisure-bodk .verisure-row span:last-child { text-align: right; }
+.verisure-bodk .verisure-warning { color: #e6b75a; font-size: 75%; }

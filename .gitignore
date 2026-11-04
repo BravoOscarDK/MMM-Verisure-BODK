@@ -1,0 +1,7 @@
+node_modules/
+.tools/
+.reference/
+secrets.json
+session.json
+session.json.tmp
+*.log

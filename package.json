@@ -1,10 +1,17 @@
 {
   "name": "mmm-verisure-bodk",
   "version": "1.0.0",
-  "description": "Verisure status for MagicMirror²",
+  "description": "Verisure status for MagicMirror\u00b2",
   "main": "MMM-Verisure-BODK.js",
   "license": "MIT",
-  "engines": { "node": ">=22" },
-  "scripts": { "login": "node scripts/login.js", "test": "node --test" },
-  "dependencies": { "verisure": "6.0.0" }
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "login": "node scripts/login.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "verisure": "6.0.0"
+  }
 }

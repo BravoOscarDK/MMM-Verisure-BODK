@@ -31,6 +31,7 @@ Add the following entry to `modules` in `MagicMirror/config/config.js`:
   position: "top_right",
   header: "Verisure",
   config: {
+    language: "en",
     installationId: "",
     updateInterval: 300000,
     showClimate: true,
@@ -70,3 +71,7 @@ Run `npm test` for local tests using a simulated API without accessing your acco
 ## Files
 
 `MMM-Verisure-BODK.js`, `MMM-Verisure-BODK.css`, `node_helper.js`, `package.json`, `package-lock.json`, `config.example.js`, `scripts/login.js`, `lib/service.js`, tests, `.gitignore`, this README, and the MIT license.
+
+## Language
+
+English is the default, independently of the MagicMirror global language. Set `language: "da"` in this module's `config` for Danish, or `language: "en"` for English. Unsupported languages fall back to English. Custom labels and device names retain their configured values. Technical logs and diagnostic errors are in English.

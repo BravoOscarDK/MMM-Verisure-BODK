@@ -6,6 +6,14 @@ A MagicMirror² module displaying Verisure alarm status, temperature, humidity, 
 
 The module reads status only. It cannot arm or disarm the alarm or unlock doors. It does not replace the Verisure app or alarm monitoring.
 
+### Preview
+
+Default alarm and sensor display with fictional readings. No Verisure account was connected. English is the default language.
+
+![Verisure example with fictional data](docs/images/example.png)
+
+The [browser preview](docs/preview.html) uses fictional data only; it does not validate external services or hardware.
+
 ## Requirements
 
 - MagicMirror² running Node.js 22 or later, with internet access.

@@ -102,6 +102,8 @@ Restart MagicMirror² using your usual startup method. Keep your module settings
 
 ## Troubleshooting
 
+- If enabling Verisure stops the whole mirror from loading, update this module and fully restart MagicMirror². Older versions overwrote MagicMirror²'s internal module metadata during startup; this is fixed. The display can now initialize before any account requests.
+- Backend failures are logged with the prefix `[MMM-Verisure-BODK]` and an actionable message, without session cookies or API response bodies. Check the terminal running MagicMirror² or your process manager's logs. Browser startup errors appear in Electron/browser Developer Tools, which may contain errors absent from the server log.
 - Missing session: run `npm run login` in the module folder.
 - Login or connection failure: check the Verisure app and your internet connection. Then try logging in again and restart MagicMirror².
 - Unknown alarm status means the API did not return a recognized status. It is not treated as disarmed.
@@ -118,6 +120,8 @@ npm test
 Automated tests do not establish hardware compatibility. Verify the module on your own MagicMirror² installation.
 
 Tests simulate the API without accessing your account. Verify actual login and sensor data on your own mirror after installation.
+
+Frontend regression coverage checks that startup, data updates and errors preserve MagicMirror² metadata, stylesheet paths and headers, and that the loading view renders before API data arrives.
 
 ## License
 

@@ -45,7 +45,7 @@ Module.register("MMM-Verisure-BODK", {
   defaults: {
     language: "en", installationId: "", updateInterval: 300000, showClimate: true, showContacts: true, animationSpeed: 500 },
   getStyles() { return ["MMM-Verisure-BODK.css"]; },
-  start() { this.data = null; this.error = ""; },
+  start() { this.reading = null; this.error = ""; },
   notificationReceived(notification) {
     if (notification === "DOM_OBJECTS_CREATED") this.sendSocketNotification("VERISURE_START", {
       id: this.identifier,
@@ -55,7 +55,7 @@ Module.register("MMM-Verisure-BODK", {
   },
   socketNotificationReceived(notification, payload) {
     if (!payload || payload.id !== this.identifier) return;
-    if (notification === "VERISURE_DATA") { this.data = payload.data; this.error = ""; }
+    if (notification === "VERISURE_DATA") { this.reading = payload.data; this.error = ""; }
     else if (notification === "VERISURE_ERROR") this.error = payload.message;
     else return;
     this.updateDom(this.config.animationSpeed);
@@ -70,8 +70,8 @@ Module.register("MMM-Verisure-BODK", {
       row.append(left, right); wrapper.appendChild(row);
     };
     if (this.error) add("", this.error, "verisure-warning");
-    if (!this.data) { if (!this.error) add("", this.text("Loading Verisure …"), "dimmed"); return wrapper; }
-    const data = this.data;
+    if (!this.reading) { if (!this.error) add("", this.text("Loading Verisure …"), "dimmed"); return wrapper; }
+    const data = this.reading;
     const states = { DISARMED: this.text("Disarmed"), ARMED_HOME: this.text("Armed home"), ARMED_AWAY: this.text("Armed away"), ARMED_NIGHT: this.text("Armed night"), CHANGE_IN_PROGRESS: this.text("Changing status …") };
     add(data.alias, states[data.armState?.statusType] || this.text("Unknown alarm status"), "bright");
     if (this.config.showClimate) for (const sensor of data.climates || []) {

@@ -29,6 +29,8 @@ module.exports = NodeHelper.create({
         const message = error.code === "ENOENT" ? "Run npm run login in the module folder."
           : error.message === "installation" ? "The selected installation was not found."
           : "Unable to fetch Verisure data. Check the connection or run npm run login again.";
+        // Log only our own diagnostic text, never upstream bodies or session data.
+        console.warn(`[MMM-Verisure-BODK] ${message}`);
         this.sendSocketNotification("VERISURE_ERROR", { id: entry.id, message });
       }
       if (!this.stopped) entry.timer = setTimeout(() => this.poll(entry), Math.min(3600000, entry.interval * 2 ** Math.min(entry.failures, 4)));

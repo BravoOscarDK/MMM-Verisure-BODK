@@ -105,9 +105,9 @@ Restart MagicMirror² using your usual startup method. Keep your module settings
 - If enabling Verisure stops the whole mirror from loading, update this module and fully restart MagicMirror². Older versions overwrote MagicMirror²'s internal module metadata during startup; this is fixed. The display can now initialize before any account requests.
 - Backend failures are logged with the prefix `[MMM-Verisure-BODK]` and an actionable message, without session cookies or API response bodies. Check the terminal running MagicMirror² or your process manager's logs. Browser startup errors appear in Electron/browser Developer Tools, which may contain errors absent from the server log.
 - Missing session: run `npm run login` in the module folder.
-- Login or connection failure: check the Verisure app and your internet connection. Then try logging in again and restart MagicMirror².
+- Login or connection failure: check the Verisure app and your internet connection. The module keeps retrying and reloads the saved session after a failed update. If the session has expired or been revoked, run the login wizard again; two-factor authentication may require your input.
 - Unknown alarm status means the API did not return a recognized status. It is not treated as disarmed.
-- Partial API failures display a warning. On a complete failure, the last result remains visible and is marked as stale. Retries use an increasing interval, up to one hour.
+- Partial API failures display a warning. On a complete failure, the last result remains visible and is marked as stale. Retries continue with an increasing interval capped at five minutes, or the configured update interval if longer. A successful update restores the normal interval.
 - Sensors that are absent or returned as null are not displayed.
 - No alarm PIN is required.
 
